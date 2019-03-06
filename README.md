@@ -43,6 +43,7 @@ Vaderus’ skills occur randomly, based on their chances, so take them into
 account on each turn.
 
 Game over
+
 The game ends when one of the players remain without health or the number
 of turns reaches 20.
 The application must output the results each turn: what happened, which skills
@@ -51,6 +52,7 @@ If we have a winner before the maximum number of rounds is reached, he must
 be declared.
 
 Rules
+
 Alleop is a land where magic do happen. Still, for this magic to work, you’ll have
 to follow these rules:
 -  Write code in plain PHP, no frameworks, no libraries
