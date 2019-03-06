@@ -17,6 +17,7 @@ he’ll use this skill every time he attacks.
 there’s a 20% change he’ll use this skill every time he defends.
 
 Gameplay
+
 As Vaderus walks the ever-green forests of Alleop, he encounters some wild
 beasts, with the following properties:
 -  Health: 60 - 90
