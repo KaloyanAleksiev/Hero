@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kaloyan
- * Date: 09.03.19
- * Time: 09:19
- */
 
 namespace Game\Output;
-
 
 use Game\Heroes\IFighter;
 

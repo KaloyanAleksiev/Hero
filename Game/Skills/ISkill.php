@@ -4,5 +4,5 @@ namespace Game\Skills;
 
 interface ISkill
 {
-    public function use():bool;
+    public function used():bool;
 }

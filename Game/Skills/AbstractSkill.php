@@ -22,7 +22,7 @@ abstract class AbstractSkill implements ISkill
      * Return true if the skill was used
      * @return bool
      */
-    public function use(): bool
+    public function used(): bool
     {
         $use = rand(1,100);
         if ($this->chanceToUse <= $use) {

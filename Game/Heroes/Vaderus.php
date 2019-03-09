@@ -42,7 +42,7 @@ class Vaderus extends AbstractFighter
     public function attack(IFighter $defender): void
     {
         $this->resetSkillsUsed();
-        if ($this->rapidStrikeSkill->use())
+        if ($this->rapidStrikeSkill->used())
         {
             $this->usedSkills[] = $this->rapidStrikeSkill->getSkillName();
             parent::attack($defender);
@@ -59,7 +59,7 @@ class Vaderus extends AbstractFighter
     public function defend(int $strikePower): void
     {
         $this->resetSkillsUsed();
-        if ($this->magicShieldSkill->use()) {
+        if ($this->magicShieldSkill->used()) {
             $this->usedSkills[] = $this->magicShieldSkill->getSkillName();
             $strikePower = intval(round($strikePower/2));
         }
