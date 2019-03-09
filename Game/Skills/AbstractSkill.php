@@ -13,6 +13,10 @@ abstract class AbstractSkill implements ISkill
 {
     protected $chanceToUse;
 
+    /**
+     * AbstractSkill constructor.
+     * @param int $chanceToUse
+     */
     public function __construct(int $chanceToUse)
     {
         $this->chanceToUse = $chanceToUse;

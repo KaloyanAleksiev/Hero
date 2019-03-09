@@ -98,6 +98,7 @@ class AbstractBattlefield implements IBattlefield
     }
 
     /**
+     * Return number of round for the fight
      * @return int
      */
     public function getNumberOfRounds(): int
