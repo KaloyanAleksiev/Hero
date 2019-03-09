@@ -15,5 +15,16 @@ ini_set('display_errors', 'On');
         <form method="post">
             <input type="submit" name="submit" class="submit" value="Fight!" />
         </form>
+        <?php
+        if(!empty($_POST)) {
+            require_once('Game/Application.php');
+            try {
+                $app = \Game\Application::getInstance();
+                $app->run();
+            } catch (\Exception $exception) {
+                echo $exception->getMessage();
+            }
+        }
+        ?>
     </body>
 </html>

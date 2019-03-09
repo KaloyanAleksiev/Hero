@@ -1,6 +1,10 @@
 <?php
 namespace Game;
 
+use Game\Battlefield\AlleopForest;
+use Game\Heroes\Vaderus;
+use Game\Heroes\WildBeast;
+
 class Application
 {
     private static $_instance = null;
@@ -15,7 +19,10 @@ class Application
 
     public function run()
     {
-        //TODO:Make fight
+       $arena = new AlleopForest();
+       $valderus = new Vaderus();
+       $wildBeast = new WildBeast();
+       $arena->fight($valderus, $wildBeast);
     }
     
     /**
