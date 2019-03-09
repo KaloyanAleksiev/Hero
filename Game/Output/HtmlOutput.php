@@ -13,7 +13,14 @@ use Game\Heroes\IFighter;
 
 class HtmlOutput implements IOutput
 {
-    public function render(IFighter $attacker, IFighter $defender, bool $getLucky, array $skillsUsedByAttacker, array $skillsUsedByDefender, int $damageDone, int $defenderHealthLeft, int $round, int $oldDefenderHealth): void
+    /**
+     * Output the result of the fight
+     * @param IFighter $attacker
+     * @param IFighter $defender
+     * @param int $round
+     * @param int $oldDefenderHealth
+     */
+    public function render(IFighter $attacker, IFighter $defender,  int $round, int $oldDefenderHealth): void
     {
         $html = 'Round ' . $round . '<br />';
         $html .= $attacker . ' with ' . $attacker->getHealth() . ' attacks ' . $defender . ' with ' . $oldDefenderHealth . '<br />';

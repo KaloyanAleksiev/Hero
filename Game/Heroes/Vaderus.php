@@ -23,7 +23,7 @@ class Vaderus extends AbstractFighter
      */
     private $magicShieldSkill;
     /**
-     * @var array of skills used each turn
+     * @var array of skills used by the hero each turn
      */
     private $usedSkills = array();
 
@@ -41,34 +41,29 @@ class Vaderus extends AbstractFighter
      */
     public function attack(IFighter $defender): void
     {
-
-        if ($defender->didYouGetLucky()) {
-            return;
-        }
-
         $this->resetSkillsUsed();
         if ($this->rapidStrikeSkill->use())
         {
             $this->usedSkills[] = $this->rapidStrikeSkill->getSkillName();
-            $this->strike($defender);
+            parent::attack($defender);
         }
 
-        $this->strike($defender);
+        parent::attack($defender);
     }
 
     /**
-     * Defence from enemy attacks
+     * Defend from enemy attacks
      * @param int $strikePower
      * @throws \ReflectionException
      */
-    public function defence(int $strikePower): void
+    public function defend(int $strikePower): void
     {
         $this->resetSkillsUsed();
         if ($this->magicShieldSkill->use()) {
             $this->usedSkills[] = $this->magicShieldSkill->getSkillName();
             $strikePower = intval(round($strikePower/2));
         }
-        $this->defend($strikePower);
+        parent::defend($strikePower);
     }
 
     /**

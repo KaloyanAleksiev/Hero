@@ -17,11 +17,6 @@ class WildBeast extends AbstractFighter
     const SPEED_RANGE = [40,60];
     const LUCK_RANGE = [25,40];
 
-    /**
-     * @var array of skills used each turn
-     */
-    private $usedSkills = array();
-
     public function __construct()
     {
         parent::__construct(self::HEALTH_RANGE, self::STRENGTH_RANGE, self::DEFENCE_RANGE, self::SPEED_RANGE, self::LUCK_RANGE);
@@ -33,19 +28,16 @@ class WildBeast extends AbstractFighter
      */
     public function attack(IFighter $defender): void
     {
-        if ($defender->didYouGetLucky()) {
-            return;
-        }
-        $this->strike($defender);
+        parent::attack($defender);
     }
 
     /**
      * Defence from enemy attacks
      * @param int $strikePower
      */
-    public function defence(int $strikePower): void
+    public function defend(int $strikePower): void
     {
-        $this->defend($strikePower);
+        parent::defend($strikePower);
     }
 
     /**
@@ -54,6 +46,6 @@ class WildBeast extends AbstractFighter
      */
     public function getSkillsUsed(): array
     {
-        return $this->usedSkills;
+        return array();
     }
 }

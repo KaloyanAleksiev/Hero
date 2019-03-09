@@ -15,7 +15,7 @@ abstract class AbstractFighter implements IFighter
      * If true the fighter get lucky this turn
      * @var bool
      */
-    private $getLucky;
+    private $getLucky = false;
 
     /**
      * AbstractFighter constructor.
@@ -28,81 +28,27 @@ abstract class AbstractFighter implements IFighter
      */
     public function __construct(array $healthRange, array $strengthRange, array $defenceRange, array $speedRange, array $luckRange)
     {
-        $this->setHealth($healthRange);
-        $this->setStrength($strengthRange);
-        $this->setDefence($defenceRange);
-        $this->setSpeed($speedRange);
-        $this->setLuck($luckRange);
+
+        $this->health = $this->generateProperty($healthRange,"health");
+        $this->strength = $this->generateProperty($strengthRange,"strength");
+        $this->defence = $this->generateProperty($defenceRange,"defence");
+        $this->speed = $this->generateProperty($speedRange,"speed");
+        $this->luck = $this->generateProperty($luckRange,"luck");
     }
 
     /**
-     * Set Health property
+     * Generate property in range
      * @param array $range
+     * @param string $propertyName
+     * @return int
      * @throws \Exception
      */
-    protected function setHealth(array $range): void
+    protected function generateProperty(array $range, string $propertyName): int
     {
         if ($this->checkRange($range)) {
-            $this->health = rand($range[0], $range[1]);
+            return rand($range[0], $range[1]);
         } else {
-            throw new \Exception("Your hero must possess some health in range (e.g.: [x,y])");
-        }
-
-    }
-    /**
-     * Set Strength property
-     * @param array $range
-     * @throws \Exception
-     */
-    protected function setStrength(array $range): void
-    {
-        if ($this->checkRange($range)) {
-            $this->strength = rand($range[0], $range[1]);
-        } else {
-            throw new \Exception("Your hero must possess some strength in range (e.g.: [x,y])");
-        }
-
-    }
-
-    /**
-     * Set Defence property
-     * @param array $range
-     * @throws \Exception
-     */
-    protected function setDefence(array $range): void
-    {
-        if ($this->checkRange($range)) {
-            $this->defence = rand($range[0], $range[1]);
-        } else {
-            throw new \Exception("Your hero must possess some defence in range (e.g.: [x,y])");
-        }
-    }
-
-    /**
-     * Set Speed property
-     * @param array $range
-     * @throws \Exception
-     */
-    protected function setSpeed(array $range): void
-    {
-        if ($this->checkRange($range)) {
-            $this->speed = rand($range[0], $range[1]);
-        } else {
-            throw new \Exception("Your hero must possess some speed in range (e.g.: [x,y])");
-        }
-    }
-
-    /**
-     * Set Luck property
-     * @param array $range
-     * @throws \Exception
-     */
-    protected function setLuck(array $range): void
-    {
-        if ($this->checkRange($range)) {
-            $this->luck = rand($range[0], $range[1]);
-        } else {
-            throw new \Exception("Your hero must possess some luck in range (e.g.: [x,y])");
+            throw new \Exception("Your hero must possess some " . $propertyName . " in range (e.g.: [x,y])");
         }
     }
 
@@ -120,37 +66,38 @@ abstract class AbstractFighter implements IFighter
     }
 
     /**
-     * The actual strike/hit action
-     * @param IFighter $defender
-     */
-    protected function strike(IFighter $defender): void
-    {
-        $defender->defence($this->strength);
-    }
-
-    /**
-     * The actual defend action
-     * @param int $strikePower
-     */
-    protected function defend(int $strikePower) :void
-    {
-        $this->health = max($this->health - max($strikePower - $this->defence, 0), 0);
-    }
-
-    /**
-     * Set true if the fighter get lucky
+     * Check if the fighter get lucky
      * @return bool
      */
-    public function didYouGetLucky(): bool
+    private function didYouGetLucky(): bool
     {
         $luck = rand(1,100);
         if ($this->luck <= $luck) {
-            $this->getLucky = true;
             return true;
         }
-        $this->getLucky = false;
         return false;
+    }
 
+    /**
+     * Attacks other fighter
+     * @param IFighter $defender
+     */
+    public function attack(IFighter $defender): void
+    {
+        $defender->defend($this->strength);
+    }
+
+    /**
+     * Defend from enemy attacks
+     * @param int $strikePower
+     */
+    public function defend(int $strikePower) :void
+    {
+        if ($this->didYouGetLucky()) {
+            $this->getLucky = true;
+            return;
+        }
+        $this->health = max($this->health - max($strikePower - $this->defence, 0), 0);
     }
 
     /**

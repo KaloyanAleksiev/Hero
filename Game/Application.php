@@ -20,9 +20,9 @@ class Application
     public function run()
     {
        $arena = new AlleopForest();
-       $valderus = new Vaderus();
+       $vaderus = new Vaderus();
        $wildBeast = new WildBeast();
-       $arena->fight($valderus, $wildBeast);
+       $arena->fight($vaderus, $wildBeast);
     }
     
     /**
