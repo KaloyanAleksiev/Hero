@@ -97,6 +97,7 @@ abstract class AbstractFighter implements IFighter
             $this->getLucky = true;
             return;
         }
+        $this->getLucky = false;
         $this->health = max($this->health - max($strikePower - $this->defence, 0), 0);
     }
 
