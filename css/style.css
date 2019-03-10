@@ -8,9 +8,24 @@ body
     margin: 0 auto;
 }
 
+.fightStart{
+    width: 33%;
+    background-color: red;
+    color: white;
+    display: inline-block;
+    margin: 25px 0px;
+}
+
 .fightRound {
     width: 25%;
-    margin: 0 auto;
+    margin: 0 auto 25px;
+}
+
+.fightWinner {
+    width: 50%;
+    background-color: deepskyblue;
+    color: white;
+    display: inline-block;
 }
 
 .divTable {

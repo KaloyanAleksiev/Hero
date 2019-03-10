@@ -47,11 +47,13 @@ class HtmlOutput implements IOutput
                         </div>
                     </div>
                 </div>
-             </div>';
+             </div>
+             <div class="fightStart">
+                 <p>Fight Start!</p>
+             </div>
+             ';
 
-            $html .= "<div>
-                        <p>Fight Start!</p>
-                    </div>";
+            $html .= "";
         }
 
         $html .= '<div class="fightRound">
@@ -69,11 +71,23 @@ class HtmlOutput implements IOutput
                         if ($defender->getLucky()) {
                             $html .= $defender . ' gets luck this turn and did not get any damage!';
                         } else {
+
+                            if (!empty($attacker->getSkillsUsed())) {
+                                $html .= 'In this turn ' . $attacker . ' used the following skills: ' . '<br />';
+                                foreach ($attacker->getSkillsUsed() as $skill) {
+                                    $html .= $skill . '<br /><br />';
+                                }
+                            }
+
+                            if (!empty($defender->getSkillsUsed())) {
+                                $html .= 'In this turn ' . $defender . ' used the following skills: ' . '<br />';
+                                foreach ($defender->getSkillsUsed() as $skill) {
+                                    $html .= $skill . '<br /><br />';
+                                }
+                            }
+
                             $html .= $defender . ' lost ' . max($oldDefenderHealth - $defender->getHealth(), 0) . ' health points! And left with ' . $defender->getHealth() . ' health points.' . '<br />';
 
-                            if ($defender->getHealth() == 0) {
-                                $html .= '<br /><br /><br />And the winner in this epic battle is ' . $attacker . '<br />';
-                            }
                         }
 
                         $html .= '
@@ -83,39 +97,11 @@ class HtmlOutput implements IOutput
             </div>
         </div>';
 
-
-//
-//
-//        $html .= 'Round ' . $round . '<br />';
-
-//        $html .= $attacker . ' with ' . $attacker->getHealth() . ' attacks ' . $defender . ' with ' . $oldDefenderHealth . '<br />';
-
-//        if ($getLucky) {
-//            $html .= $defender . ' gets luck this turn and did not get any damage!' . '<br />';
-//        } else {
-//
-//            if (!empty($skillsUsedByAttacker)) {
-//                $html .= 'In this turn ' . $attacker . ' used the following skills: ' . '<br />';
-//                foreach ($skillsUsedByAttacker as $skill) {
-//                    $html .= $skill . '<br />';
-//                }
-//            }
-//
-//            if (!empty($skillsUsedByDefender)) {
-//                $html .= 'In this turn ' . $defender . ' used the following skills: ' . '<br />';
-//                foreach ($skillsUsedByDefender as $skill) {
-//                    $html .= $skill . '<br />';
-//                }
-//            }
-//
-//            $html .= $defender . ' lost ' . $damageDone . ' health points! And left with ' . $defenderHealthLeft . ' health points' . '<br />';
-//
-//            if ($defenderHealthLeft == 0) {
-//                $html .= '<br /><br /><br />And the winner in this epic battle is ' . $attacker . '<br />';
-//            }
-//        }
-//
-//        $html .= '<br /><br /><br />';
+        if ($defender->getHealth() == 0) {
+            $html .= '<div class="fightWinner">
+                    <p>And the winner in this epic battle is ' . $attacker . '!!!</p>
+            </div>';
+        }
 
         echo $html;
     }

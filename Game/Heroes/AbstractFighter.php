@@ -66,15 +66,17 @@ abstract class AbstractFighter implements IFighter
     }
 
     /**
-     * Check if the fighter get lucky
+     * Return and set getLucky property to true if the defender get lucky
      * @return bool
      */
-    private function didYouGetLucky(): bool
+    public function didYouGetLucky(): bool
     {
         $luck = rand(1,100);
         if ($this->luck <= $luck) {
+            $this->getLucky = true;
             return true;
         }
+        $this->getLucky = false;
         return false;
     }
 
@@ -93,11 +95,6 @@ abstract class AbstractFighter implements IFighter
      */
     public function defend(int $strikePower) :void
     {
-        if ($this->didYouGetLucky()) {
-            $this->getLucky = true;
-            return;
-        }
-        $this->getLucky = false;
         $this->health = max($this->health - max($strikePower - $this->defence, 0), 0);
     }
 

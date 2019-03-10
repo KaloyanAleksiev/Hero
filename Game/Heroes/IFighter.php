@@ -18,6 +18,12 @@ interface IFighter
     public function defend(int $strikePower): void;
 
     /**
+     * Return and set getLucky property to true if the defender get lucky
+     * @return bool
+     */
+    public function didYouGetLucky(): bool;
+
+    /**
      * Return hero's speed
      * @return int
      */

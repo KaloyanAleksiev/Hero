@@ -21,6 +21,10 @@ class WildBeast extends AbstractFighter
      */
     public function attack(IFighter $defender): void
     {
+        if ($defender->didYouGetLucky()) {
+            return;
+        }
+
         parent::attack($defender);
     }
 
