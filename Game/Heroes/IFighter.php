@@ -36,6 +36,18 @@ interface IFighter
     public function getHealth(): int;
 
     /**
+     * Return hero's strength
+     * @return int
+     */
+    public function getStrength(): int;
+
+    /**
+     * Return hero's defence
+     * @return int
+     */
+    public function getDefence(): int;
+
+    /**
      * Return true if the hero get lucky
      * @return bool
      */
@@ -46,5 +58,10 @@ interface IFighter
      * @return array
      */
     public function getSkillsUsed(): array;
+
+    /**
+     * @return string
+     */
+    public function __toString(): string;
 
 }

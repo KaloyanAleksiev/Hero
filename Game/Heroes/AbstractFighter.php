@@ -128,6 +128,24 @@ abstract class AbstractFighter implements IFighter
     }
 
     /**
+     * Return hero's strength
+     * @return int
+     */
+    public function getStrength(): int
+    {
+        return $this->strength;
+    }
+
+    /**
+     * Return hero's defence
+     * @return int
+     */
+    public function getDefence(): int
+    {
+        return $this->defence;
+    }
+
+    /**
      * Return true if the hero get lucky
      * @return bool
      */
