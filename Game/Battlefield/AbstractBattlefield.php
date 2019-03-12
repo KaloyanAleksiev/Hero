@@ -51,11 +51,6 @@ class AbstractBattlefield implements IBattlefield
                 $this->htmlOutput->render(
                     $this->secondAttacker,
                     $this->firstAttacker,
-//                    $this->firstAttacker->getLucky(),
-//                    $this->secondAttacker->getSkillsUsed(),
-//                    $this->firstAttacker->getSkillsUsed(),
-//                    max($oldDefenderHealth - $this->firstAttacker->getHealth(), 0),
-//                    $this->firstAttacker->getHealth(),
                     $i,
                     $oldDefenderHealth
                 );
@@ -67,11 +62,6 @@ class AbstractBattlefield implements IBattlefield
                 $this->htmlOutput->render(
                     $this->firstAttacker,
                     $this->secondAttacker,
-//                    $this->secondAttacker->getLucky(),
-//                    $this->firstAttacker->getSkillsUsed(),
-//                    $this->secondAttacker->getSkillsUsed(),
-//                    max($oldDefenderHealth - $this->secondAttacker->getHealth(), 0),
-//                    $this->secondAttacker->getHealth(),
                     $i,
                     $oldDefenderHealth
                 );
